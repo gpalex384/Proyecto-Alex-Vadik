@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- 
+
+
+// Comentario añadido, probando el commit
 @Entity
 public class Product {
 	

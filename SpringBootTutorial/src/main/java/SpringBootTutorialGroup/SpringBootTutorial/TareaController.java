@@ -8,27 +8,27 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
  
 @RestController
-public class ProductController {
+public class TareaController {
  
     @Autowired
-    private ProductService service;
+    private TareaService service;
      
     // RESTful API methods for Retrieval operations
     
     //curl http://localhost:8080/products
     @GetMapping("/products")
-    public List<Product> list() {
+    public List<Tarea> list() {
         return service.listAll();
     }
     
     //curl http://localhost:8080/products/{1}
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> get(@PathVariable Integer id) {
+    public ResponseEntity<Tarea> get(@PathVariable Integer id) {
         try {
-            Product product = service.get(id);
-            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        	Tarea tarea = service.get(id);
+            return new ResponseEntity<Tarea>(tarea, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Tarea>(HttpStatus.NOT_FOUND);
         }      
     }
     
@@ -48,8 +48,8 @@ public class ProductController {
 //    http://localhost:8080/products
 //    
     @PostMapping("/products")
-    public void add(@RequestBody Product product) {
-        service.save(product);
+    public void add(@RequestBody Tarea tarea) {
+        service.save(tarea);
     }
      
     // RESTful API method for Update operation
@@ -58,10 +58,10 @@ public class ProductController {
     //El {id} lo utiliza para comprobar si existe ese registro. Si no existe marca error
     //Si existe el registro le pasa el Json completo.
     @PutMapping("/products/{id}")
-    public ResponseEntity<?> update(@RequestBody Product product, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody Tarea tarea, @PathVariable Integer id) {
         try {
-            Product existProduct = service.get(id);
-            service.save(product);
+        	Tarea existTarea = service.get(id);
+            service.save(tarea);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

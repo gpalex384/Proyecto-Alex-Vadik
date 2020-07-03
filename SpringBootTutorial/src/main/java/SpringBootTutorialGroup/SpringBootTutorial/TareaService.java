@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
  
 @Service
 @Transactional
-public class ProductService {
+public class TareaService {
  
     @Autowired
-    private ProductRepository repo;
+    private TareaRepository repo;
      
-    public List<Product> listAll() {
+    public List<Tarea> listAll() {
         return repo.findAll();
     }
      
-    public void save(Product product) {
-        repo.save(product);
+    public void save(Tarea tarea) {
+        repo.save(tarea);
     }
      
-    public Product get(Integer id) {
+    public Tarea get(Integer id) {
         return repo.findById(id).get();
     }
      
